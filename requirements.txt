@@ -1,0 +1,4 @@
+# requirements.txt
+# template version 0.1
+# Requirements for rename
+python_version >= 3.6
