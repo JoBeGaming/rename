@@ -1,15 +1,15 @@
 # Rename
 
-Python module to implement the `@rename` and `@rename_local` decorators, 
-which can dynamically rename objects at runtime
+Python module to implement the `@rename` decorators, 
+that can dynamically rename objects at runtime. 
 
 #
-*Note that `rename` and `rename_local` need python 3.6 as the minimum version.*
+*Note that `rename` needs python 3.6 or above.*
 
 ## rename
 
 Rename the object, after which the new name will replace the old one,
-making the old object not callable anymore`:
+making the old object not callable anymore. This will make the new object behave just like the old one:
 ```python
 
 @rename("hi")
@@ -24,7 +24,6 @@ hello("John")
 Attempting to call the old object will raise a NameError,
 that will look like this for the context given above:  
 `Name 'hello' is not defined. Maybe you meant 'hi'?`
-Note that `@rename` works for classes and functions.
 
 When doing something like
 ```python
@@ -33,12 +32,10 @@ When doing something like
 def hi(name):
   print(f"Hi: {name}!")
 ```
-We will raise a TypeError:
+We will get a TypeError:
 `New name 'hi' cannot match object name 'hi'.`
 
-## rename_local
-
-When wanting to rename methods, use `@rename_local` and a syntax like:
+Note that `@rename` works for classes and functions too.
 ```python
 
 class cls():
