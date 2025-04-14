@@ -21,19 +21,19 @@ hi("John")
 # Throws a NameError
 hello("John")
 ```
-Attempting to call the old object will raise a NameError,
+Attempting to call the old object will now raise a NameError,
 that will look like this for the context given above:  
 `Name 'hello' is not defined. Maybe you meant 'hi'?`
 
-When doing something like
+Note that when doing something like:
 ```python
 
 @rename("hi")
 def hi(name):
   print(f"Hi: {name}!")
 ```
-We will get a TypeError:
-`New name 'hi' cannot match object name 'hi'.`
+We will get a TypeError
+`New name 'hi' cannot match object name 'hi'.`, as the old name cannot be equal to the new name.
 
 Note that `@rename` works for classes and functions too.
 ```python
