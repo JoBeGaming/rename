@@ -20,10 +20,10 @@ class rename():
 
     hi("John")
 
-    # Throws a TypeError
+    # Throws a NameError
     hello("John")
 
-  Attempting to call the old object will raise a TypeError,
+  Attempting to call the old object will raise a NameError,
   that will look like this for the context given above:  
   `Name 'hello' is not defined. Maybe you meant 'hi'?`
   """
