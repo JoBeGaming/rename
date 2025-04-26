@@ -1,6 +1,14 @@
 # `rename` module
 # (c) 2025 JoBe
 
+__author__ = "JoBe"
+__github__ = "https://github.com/JoBeGaming/rename/"
+__version__ = "1.0"
+
+__all__ = [
+    "rename"
+]
+
 from sys import version_info
 from collections.abc import Callable
 
@@ -8,6 +16,7 @@ if version_info >= (3, 11):
     from typing import Any, Never
 else:
     from typing import Any, NoReturn as Never
+
 
 class rename():
     """
