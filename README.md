@@ -35,7 +35,7 @@ def hi(name):
 We will get a TypeError
 `New name 'hi' cannot match object name 'hi'.`, as the old name cannot be equal to the new name.
 
-Note that `@rename` works for classes and functions too.
+Note that `@rename` works for classes and methods too.
 ```python
 
 class cls():
