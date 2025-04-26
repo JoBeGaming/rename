@@ -34,9 +34,23 @@ class rename():
         >>> # Throws a NameError
         >>> hello("John")
 
+    This also works for classes and methods::
+    
+        >>> class cls():
+        ...
+        >>>     @rename("cls.hi", _local=True)
+        >>>     def hello(name):
+        >>>         print(f"Hi: {name}!")
+        ...
+        >>> cls.hi("John")
+        ...
+        >>> # Throws a NameError
+        >>> cls.hello("John")
+
+
     Attempting to call the old object will raise a NameError,
     that will look like this for the context given above:  
-    `Name 'hello' is not defined. Maybe you meant 'hi'?`
+    `Name 'cls.hello' is not defined. Maybe you meant 'cls.hi'?`
     """
 
     __slots__: tuple[str, ...] = ("func", "_called", "_name")
