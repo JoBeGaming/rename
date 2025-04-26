@@ -14,7 +14,7 @@ making the old object not callable anymore. This will make the new object behave
 
 @rename("hi")
 def hello(name):
-  print(f"Hi: {name}!")
+    print(f"Hi: {name}!")
 
 hi("John")
 
@@ -30,7 +30,7 @@ Note that when doing something like:
 
 @rename("hi")
 def hi(name):
-  print(f"Hi: {name}!")
+    print(f"Hi: {name}!")
 ```
 We will get a TypeError
 `New name 'hi' cannot match object name 'hi'.`, as the old name cannot be equal to the new name.
@@ -40,9 +40,9 @@ Note that `@rename` works for classes and functions too.
 
 class cls():
 
-  @rename("cls.hi", _local=True)
-  def hello(name):
-    print(f"Hi: {name}!")
+    @rename("cls.hi", _local=True)
+    def hello(name):
+        print(f"Hi: {name}!")
 
 cls.hi("John")
 
