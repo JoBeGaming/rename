@@ -6,7 +6,7 @@ __github__ = "https://github.com/JoBeGaming/rename/"
 __version__ = "1.0"
 
 __all__ = [
-    "rename"
+    "rename",
 ]
 
 from sys import version_info
