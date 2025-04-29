@@ -55,15 +55,15 @@ class rename():
 
     __slots__: tuple[str, ...] = ("func", "_called", "_name")
 
-    # Helper to raise a `TypeError`
+    # Helper to raise a NameError
     def _error(self) -> Never:
         raise NameError(
             f"Name '{self._name}' is not defined. Maybe you meant '{self.func}'?"
         )
 
     def __init__(self, func: Callable) -> None:
-        self.func = func   
-        self._called = False
+        self.func: Callable = func   
+        self._called: bool = False
 
     def __call__(self, *args, **kwargs) -> Any:
         if not self._called:
@@ -71,11 +71,11 @@ class rename():
             # `id()` of the object
             globals()[self.func] = args[0]
             globals()[args[0]] = self._error
-            self._name = args[0].__name__
-            self._called = True
+            self._name: str = args[0].__name__
+            self._called: bool = True
             # Make the old object reroute to
             # `renames._error`, which throws 
-            # a `TypeError`:
+            # a NameError:
             #   "Name'{self._name}' is not 
             #   defined. Maybe you meant 
             #   '{self.func}'?" 
