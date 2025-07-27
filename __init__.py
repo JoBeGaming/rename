@@ -1,13 +1,10 @@
 # `rename` module
+
 # (c) 2025 JoBe
 
 __author__ = "JoBe"
 __github__ = "https://github.com/JoBeGaming/rename/"
 __version__ = "1.0"
-
-__all__ = [
-    "rename",
-]
 
 from sys import version_info
 from collections.abc import Callable
@@ -18,6 +15,11 @@ else:
     from typing import Any, NoReturn as Never
 
 
+__all__ = [
+    "rename",
+]
+
+
 class rename():
     """
     Rename the object, after which the new name will replace the old one,
@@ -25,12 +27,11 @@ class rename():
 
         >>> @rename("hi")
         >>> def hello(name):
-        >>>     print(f"Hi: {name}!")
+        ...     print(f"Hi: {name}!")
         ...
         >>> # Works
         >>> hi("John")
         Hi: John!
-        ...
         >>> # Throws a NameError
         >>> hello("John")
 
@@ -38,19 +39,21 @@ class rename():
     
         >>> class cls():
         ...
-        >>>     @rename("cls.hi", _local=True)
-        >>>     def hello(name):
-        >>>         print(f"Hi: {name}!")
+        ...     @rename("cls.hi", _local=True)
+        ...     def hello(name):
+        ...         print(f"Hi: {name}!")
         ...
         >>> cls.hi("John")
-        ...
+        >>>
         >>> # Throws a NameError
         >>> cls.hello("John")
 
 
     Attempting to call the old object will raise a NameError,
     that will look like this for the context given above:  
-    `Name 'cls.hello' is not defined. Maybe you meant 'cls.hi'?`
+    `Name 'cls.hello' is not defined. Maybe you meant 'cls.hi'?`.
+    The docstring of the object will have every mention of the old 
+    name renamed to the new one.
     """
 
     __slots__: tuple[str, ...] = ("func", "_called", "_name")
@@ -58,11 +61,11 @@ class rename():
     # Helper to raise a NameError
     def _error(self) -> Never:
         raise NameError(
-            f"Name '{self._name}' is not defined. Maybe you meant '{self.func}'?"
+            f"Name '{self._name}' is not defined. Maybe you meant '{self.func}'?" #fn.__name__
         )
 
-    def __init__(self, func: Callable) -> None:
-        self.func: Callable = func   
+    def __init__(self, func: Callable[[], Any] | Callable[..., Any]) -> None:
+        self.func: Callable = func
         self._called: bool = False
 
     def __call__(self, *args, **kwargs) -> Any:
@@ -72,6 +75,7 @@ class rename():
             globals()[self.func] = args[0]
             globals()[args[0]] = self._error
             self._name: str = args[0].__name__
+            self.?.__doc__.replace(?, ?)
             self._called: bool = True
             # Make the old object reroute to
             # `renames._error`, which throws 
@@ -80,4 +84,4 @@ class rename():
             #   defined. Maybe you meant 
             #   '{self.func}'?" 
             return self._error
-        return self.func(*args[1:], **kwargs)
+        return self.func(*args[1:], **kwargs) # just Args?
