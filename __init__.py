@@ -4,7 +4,7 @@
 
 __author__ = "JoBe"
 __github__ = "https://github.com/JoBeGaming/rename/"
-__version__ = "1.0"
+__version__ = "1.0.1"
 
 from sys import version_info
 from collections.abc import Callable
@@ -36,7 +36,7 @@ class rename():
         >>> hello("John")
 
     This also works for classes and methods::
-    
+
         >>> class cls():
         ...
         ...     @rename("cls.hi", _local=True)
@@ -69,19 +69,22 @@ class rename():
         self._called: bool = False
 
     def __call__(self, *args, **kwargs) -> Any:
-        if not self._called:
-            # Rename the old object, without modifying the 
-            # `id()` of the object
-            globals()[self.func] = args[0]
-            globals()[args[0]] = self._error
-            self._name: str = args[0].__name__
-            self.?.__doc__.replace(?, ?)
-            self._called: bool = True
-            # Make the old object reroute to
-            # `renames._error`, which throws 
-            # a NameError:
-            #   "Name'{self._name}' is not 
-            #   defined. Maybe you meant 
-            #   '{self.func}'?" 
-            return self._error
-        return self.func(*args[1:], **kwargs) # just Args?
+        if self._called:
+            return self.func(*args[1:], **kwargs) # just Args?
+
+        # Rename the old object, without modifying the 
+        # `id()` of the object
+        globals()[self.func] = args[0]
+        globals()[args[0]] = self._error
+
+        self._name: str = args[0].__name__
+        self.?.__doc__.replace(?, ?)
+        self._called: bool = True
+
+        # Make the old object reroute to
+        # `renames._error`, which throws 
+        # a NameError:
+        #   "Name'{self._name}' is not 
+        #   defined. Maybe you meant 
+        #   '{self.func}'?" 
+        return self._error
