@@ -20,6 +20,8 @@ __all__ = [
 ]
 
 
+# TODO: Implement `local` functionality.
+# TODO: Rename `local` to `scoped`?
 class rename():
     """
     Rename the object, after which the new name will replace the old one,
