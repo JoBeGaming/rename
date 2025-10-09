@@ -104,8 +104,8 @@ class invalid_rename(Generic[P, T]):
 
     def __call__(self, *args: P.args, **kwargs: P.kwargs) -> T:
         if not isinstance(args, tuple): # type: ignore[unnecessaryIsInstance]
-            args = (args,) # type: ignore[assignment]
-        
+            args = (args,)
+
         representable_args: list[str] = []
         for arg in args:
             representable_args.append(repr(arg))
