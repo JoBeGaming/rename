@@ -142,11 +142,10 @@ class rename(Generic[P, T]):
         func.__repr__ = self._repr_(func, self.name)
         globals()[self.name] = func
 
-
         if not self.scoped:
             globals()[func.__name__] = invalid_rename(func, self.name)
         else:
-            # BUiltins dont have __qualname__?
+            # Builtins dont have __qualname__?
             # but wrappers can return em
             globals()[func.__qualname__] = invalid_rename(func, self.name) 
             #_make_scope_getattr(...)
