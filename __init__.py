@@ -3,8 +3,7 @@
 # (c) 2025 JoBe
 
 __author__ = "JoBe"
-__github__ = "https://github.com/JoBeGaming/rename/"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 from sys import version_info
 from collections.abc import Callable
