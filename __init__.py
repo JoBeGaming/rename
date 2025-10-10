@@ -2,8 +2,10 @@
 
 # (c) 2025 JoBe
 
+
 __author__ = "JoBe"
 __version__ = "1.0.2"
+
 
 from sys import version_info
 from collections.abc import Callable
@@ -122,6 +124,42 @@ class invalid_rename(Generic[P, T]):
 
 
 class rename(Generic[P, T]):
+    """
+    Rename the object, after which the new name will replace the old one,
+    making the old object not callable anymore::
+
+        >>> @rename("hi")
+        >>> def hello(name):
+        ...     print(f"Hi: {name}!")
+        ...
+        >>> # Works
+        >>> hi("John")
+        Hi: John!
+        >>> # Throws a NameError
+        >>> hello("John")
+
+    This also works for classes and methods::
+
+        >>> class cls():
+        ...
+        ...     @rename("cls.hi", _local=True)
+        ...     def hello(name):
+        ...         print(f"Hi: {name}!")
+        ...
+        >>> # Works
+        >>> cls.hi("John")
+        Hi: John!
+        >>> # Throws a NameError
+        >>> cls.hello("John")
+
+
+    Attempting to call the old object will raise a NameError,
+    that will look like this for the context given above:  
+    `Name 'cls.hello' is not defined. Maybe you meant 'cls.hi'?`.
+    The docstring of the object will have every mention of the old 
+    name renamed to the new one.
+    """
+
     def __init__(self, name: str, /, *, scoped: bool = False):
         self.name = name
         self.scoped = scoped
