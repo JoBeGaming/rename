@@ -204,4 +204,5 @@ def fn(a: str, b, c) -> int:
 
 #fn("", 1,c=2)
 fn2("", 1,c=2)
+print(fn2.__name__)
 print(globals())
