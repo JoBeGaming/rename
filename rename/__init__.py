@@ -7,8 +7,8 @@ __author__ = "JoBe"
 __version__ = "1.0.2"
 
 
-from sys import version_info
 from collections.abc import Callable
+from sys import version_info
 from types import FunctionType
 
 if version_info >= (3, 11):
