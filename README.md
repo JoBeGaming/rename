@@ -4,7 +4,7 @@ Python module to implement the `@rename` decorators,
 that can dynamically rename objects at runtime. 
 
 #
-*Note that `rename` needs python 3.6 or above.*
+*Note that `rename` needs Python 3.6 or above, with access to the scopes namespace (mostly through globals)*
 
 ## rename
 
